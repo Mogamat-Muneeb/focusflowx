@@ -10,9 +10,9 @@ export const Timer = () => {
   return (
     <div className={`flex flex-col items-center justify-center h-screen ${   showing === "Pomodoro" && "transition-all duration-700 ease-in-out bg-blue-400" ||  showing === "ShortBreak" &&           "transition-all duration-700 ease-in-out bg-red-400" ||  showing === "LongBreak" &&           "transition-all duration-700 ease-in-out bg-green-400" } `}>
       <div className="flex gap-4">
-        <button onClick={() => setShowing("Pomodoro")} className="font-bold text-white">Pomodoro</button>
-        <button onClick={() => setShowing("ShortBreak")} className="font-bold text-white">Short Break</button>
-        <button onClick={() => setShowing("LongBreak")} className="font-bold text-white">Long Break</button>
+        <button onClick={() => setShowing("Pomodoro")} className={`font-bold text-white ${ showing === "Pomodoro" && "px-2 py-1 bg-opacity-30 font-semibold rounded bg-white"}`}>Pomodoro</button>
+        <button onClick={() => setShowing("ShortBreak")} className={`font-bold text-white ${ showing === "ShortBreak" && "px-2 py-1 bg-opacity-30 font-semibold rounded bg-white"}`}>Short Break</button>
+        <button onClick={() => setShowing("LongBreak")}className={`font-bold text-white ${ showing === "LongBreak" && "px-2 py-1 bg-opacity-30 font-semibold rounded bg-white"}`}>Long Break</button>
       </div>
 
       <div>
