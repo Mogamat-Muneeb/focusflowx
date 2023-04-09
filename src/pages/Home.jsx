@@ -4,20 +4,23 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
-const Home = () => {
+import {Timer } from "../components/Timer"
+
+export const Home = () => {
   const { currentUser } = useContext(AuthContext);
   return (
-    <div>
-      <Link to="/login">        Login</Link>
+    <div className="">
 
-      {currentUser && (
+      {/* <Link to="/login">        Login</Link>
+
+      {currentUser && (s
         <div>
           <button onClick={() => signOut(auth)}> Logout</button>
         </div>
-      )}
-      Home
+      )} */}
+      <Timer/>
     </div>
   );
 };
 
-export default Home;
+

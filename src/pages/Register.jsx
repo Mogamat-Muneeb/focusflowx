@@ -5,7 +5,7 @@ import { auth, storage, db } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 
-const Register = () => {
+export const Register = () => {
   const [err, setErr] = useState(false);
   const handleSubmit =async (e) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ const Register = () => {
       console.log(error, "error");
     }}
   return (
-    <div className='w-full flex justify-center items-center'>
+    <div className='flex items-center justify-center w-full'>
       {/* Register */}
       <form
           onSubmit={handleSubmit}
@@ -54,4 +54,3 @@ const Register = () => {
   )
 }
 
-export default Register

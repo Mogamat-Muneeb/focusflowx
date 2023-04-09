@@ -1,12 +1,12 @@
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import {Login} from "./pages/Login";
+import {Register} from "./pages/Register";
 import {
-  BrowserRouter, 
+  BrowserRouter,
   Routes, 
   Route,
   Navigate,
 } from 'react-router-dom';
-import Home from "./pages/Home";
+import {Home} from "./pages/Home";
 function App() {
   return (
     <BrowserRouter>

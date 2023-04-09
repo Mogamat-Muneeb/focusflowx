@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-const Login = () => {
+export const Login = () => {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
 
@@ -44,4 +44,4 @@ const Login = () => {
   )
 }
 
-export default Login
+
