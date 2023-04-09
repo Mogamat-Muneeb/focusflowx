@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ResetIcon } from "./Icons";
+import { Modals } from "./Modals";
 export const ShortBreak = () => {
   const [time, setTime] = useState(5 * 60); // 25 minutes in seconds
   const [isActive, setIsActive] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     let interval = null;
 
@@ -14,7 +15,8 @@ export const ShortBreak = () => {
       }, 1000);
     } else if (isActive && time === 0) {
       setIsActive(false);
-      alert('Time is up!');
+      // alert('Time is up!');
+      setShowModal(true)
     }
 
     return () => clearInterval(interval);
@@ -38,6 +40,10 @@ export const ShortBreak = () => {
 
   return (
     <div className="">
+          {showModal && 
+      <>
+      <Modals setShowModal={setShowModal} name={"Short break "}/>
+      </>}
       <div>
         <h2 className="text-[120px] font-bold text-white">{`${minutes
           .toString()
