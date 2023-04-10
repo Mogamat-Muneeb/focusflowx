@@ -7,16 +7,19 @@ export const LongBreak = () => {
   const [time, setTime] = useState(15 * 60); 
   const [isActive, setIsActive] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [progress, setProgress] = useState(0); 
   useEffect(() => {
     let interval = null;
 
     if (isActive && time > 0) {
       interval = setInterval(() => {
         setTime(time - 1);
+        setProgress(((15 * 60 - (time - 1)) / (15 * 60)) * 100);
       }, 1000);
     } else if (isActive && time === 0) {
       setIsActive(false);
       // alert('Time is up!');
+      setProgress(0);  
       setShowModal(true)
     }
 
@@ -39,11 +42,12 @@ export const LongBreak = () => {
   const handleReset = () => {
     setIsActive(false);
     setTime(25 * 60);
+    setProgress(0); 
   };
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-  const progress = ((15 * 60 - time) / (15 * 60)) * 100;
+  
  
   return (
     <>
