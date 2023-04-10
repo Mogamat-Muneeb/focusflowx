@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ResetIcon } from "./Icons";
 import { Modals } from "./Modals";
+import { ProgressBar } from "./ProgressBar";
 export const LongBreak = () => {
   const [time, setTime] = useState(15 * 60); // 25 minutes in seconds
   const [isActive, setIsActive] = useState(false);
@@ -37,30 +38,33 @@ export const LongBreak = () => {
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-
+  const progress = ((15 * 60 - time) / (15 * 60)) * 100; // calculate progress as a percentage
+ 
   return (
-    <div className="">
+    <>
+     <ProgressBar progress={progress} />
+     <div className="flex flex-col justify-center w-full">
       {showModal && 
       <>
       <Modals setShowModal={setShowModal} name={"Long break "}/>
       </>}
-    <div>
-      <h2 className="text-[120px] font-bold text-white">{`${minutes
-        .toString()
-        .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`}</h2>
-    </div>
+      <div className="flex justify-center w-full">
+        <h2 className="text-[120px] w-[350px] font-bold text-white">{`${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`}</h2>
+      </div>
     <div className="flex items-center justify-center gap-4 ">
       {isActive === true ? (
         <button
           onClick={handlePause}
-          className="px-10 py-3 bg-white rounded text-[20px] font-bold text-green-400"
+          className="px-14 py-3 bg-white rounded text-[20px] font-bold text-green-400"
         >
           Pause
         </button>
       ) : (
         <button
           onClick={handleStart}
-          className="px-10 py-3 bg-white rounded text-[20px] font-bold text-green-400"
+          className="px-14 py-3 bg-white rounded text-[20px] font-bold text-green-400"
         >
           Start
         </button>
@@ -75,6 +79,8 @@ export const LongBreak = () => {
       )}
     </div>
   </div>
+    </>
+    
   )
 }
 
