@@ -98,7 +98,7 @@ export const Pomodoro = () => {
           ) : (
             <button
               onClick={handleStart}
-              className="px-14 py-3 bg-white rounded text-[20px] font-bold text-blue-400"
+              className="px-14 py-3 bg-white rounded text-[20px] font-bold text-blue-400 "
             >
               Start
             </button>

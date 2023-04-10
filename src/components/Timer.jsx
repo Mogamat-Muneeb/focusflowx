@@ -17,7 +17,7 @@ export const Timer = () => {
   return (
     <>
 
-    <div className={`flex flex-col items-center justify-center h-screen ${   showing === "Pomodoro" && "transition-all duration-700 ease-in-out bg-blue-400" ||  showing === "ShortBreak" &&           "transition-all duration-700 ease-in-out bg-red-400" ||  showing === "LongBreak" &&           "transition-all duration-700 ease-in-out bg-green-400" } `}>
+    <div className={`flex flex-col items-center justify-center h-screen ${   showing === "Pomodoro" && "transition-all duration-500 ease-in-out bg-blue-400" ||  showing === "ShortBreak" &&           "transition-all duration-500 ease-in-out bg-red-400" ||  showing === "LongBreak" &&           "transition-all duration-500 ease-in-out bg-green-400" } `}>
     {/* <div className={`flex justify-center items-center gap-52  pb-32   `}>
       {currentUser ? (
           <button onClick={() => signOut(auth)}  className="flex items-center gap-2 px-2 py-1 font-bold text-white bg-white rounded bg-opacity-30 "> Logout</button>
