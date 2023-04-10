@@ -5,7 +5,7 @@ import { Modals } from "./Modals";
 import { ProgressBar } from "./ProgressBar";
 import { addDoc, doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
-import { auth, db  } from "../firebase";
+import { auth, db } from "../firebase";
 import { useContext } from "react";
 export const Pomodoro = () => {
   const [time, setTime] = useState(25 * 60);
@@ -15,7 +15,7 @@ export const Pomodoro = () => {
   const [startTime, setStartTime] = useState(null);
   const [finishTime, setFinishTime] = useState(null);
   const { currentUser } = useContext(AuthContext);
-  
+
   useEffect(() => {
     let interval = null;
 
@@ -59,20 +59,18 @@ export const Pomodoro = () => {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
-
   const saveData = async () => {
-    if (isActive && time > 0 || isActive && time === 0) {
+    if ((isActive && time > 0) || (isActive && time === 0)) {
       await setDoc(doc(db, "sessions", currentUser.uid), {
         date: new Date(),
         startTime: startTime,
-        finishTime: finishTime
+        finishTime: finishTime,
       });
     }
-  }
-
+  };
 
   useEffect(() => {
-    saveData()
+    saveData();
   }, [saveData]);
 
   return (
