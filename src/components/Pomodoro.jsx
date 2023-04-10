@@ -4,7 +4,7 @@ import { ResetIcon } from "./Icons";
 import { Modals } from "./Modals";
 import { ProgressBar } from "./ProgressBar";
 export const Pomodoro = () => {
-  const [time, setTime] = useState(25 * 60); // 25 minutes in seconds
+  const [time, setTime] = useState(25 * 60); 
   const [isActive, setIsActive] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -25,6 +25,11 @@ export const Pomodoro = () => {
     return () => clearInterval(interval);
   }, [isActive, time]);
 
+  useEffect(() => {
+    if (showModal) {
+      setTime(25 * 60); 
+    }
+  }, [showModal]);
   const handleStart = () => {
     setIsActive(true);
   };
@@ -40,7 +45,7 @@ export const Pomodoro = () => {
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-  const progress = ((25 * 60 - time) / (25 * 60)) * 100; // calculate progress as a percentage
+  const progress = ((25 * 60 - time) / (25 * 60)) * 100;
 
   return (
     <>

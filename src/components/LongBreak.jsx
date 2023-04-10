@@ -4,7 +4,7 @@ import { ResetIcon } from "./Icons";
 import { Modals } from "./Modals";
 import { ProgressBar } from "./ProgressBar";
 export const LongBreak = () => {
-  const [time, setTime] = useState(15 * 60); // 25 minutes in seconds
+  const [time, setTime] = useState(15 * 60); 
   const [isActive, setIsActive] = useState(false);
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
@@ -22,6 +22,11 @@ export const LongBreak = () => {
 
     return () => clearInterval(interval);
   }, [isActive, time]);
+  useEffect(() => {
+    if (showModal) {
+      setTime(15 * 60); 
+    }
+  }, [showModal]);
 
   const handleStart = () => {
     setIsActive(true);
@@ -38,7 +43,7 @@ export const LongBreak = () => {
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-  const progress = ((15 * 60 - time) / (15 * 60)) * 100; // calculate progress as a percentage
+  const progress = ((15 * 60 - time) / (15 * 60)) * 100;
  
   return (
     <>

@@ -4,7 +4,7 @@ import { ResetIcon } from "./Icons";
 import { Modals } from "./Modals";
 import { ProgressBar } from "./ProgressBar";
 export const ShortBreak = () => {
-  const [time, setTime] = useState(5 * 60); // 25 minutes in seconds
+  const [time, setTime] = useState(5 * 60); 
   const [isActive, setIsActive] = useState(false);
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
@@ -23,6 +23,11 @@ export const ShortBreak = () => {
     return () => clearInterval(interval);
   }, [isActive, time]);
 
+  useEffect(() => {
+    if (showModal) {
+      setTime(5 * 60); 
+    }
+  }, [showModal]);
   const handleStart = () => {
     setIsActive(true);
   };
@@ -38,7 +43,7 @@ export const ShortBreak = () => {
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-  const progress = ((5 * 60 - time) / (5 * 60)) * 100; // calculate progress as a percentage
+  const progress = ((5 * 60 - time) / (5 * 60)) * 100; 
   
   return (
     <>
