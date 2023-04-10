@@ -4,10 +4,11 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, storage, db } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Register = () => {
   const [err, setErr] = useState(false);
+  const navigate = useNavigate()
   const handleSubmit =async (e) => {
     e.preventDefault();
     const displayName = e.target[0].value;
@@ -20,6 +21,7 @@ export const Register = () => {
         displayName,
         email,
       });
+      navigate("/")
     } catch (error) {
       setErr(true);
       console.log(error, "error");
