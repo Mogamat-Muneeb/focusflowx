@@ -7,6 +7,7 @@ import { addDoc, doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 import { auth, db } from "../firebase";
 import { useContext } from "react";
+import tickingClock from "../assets/tickingClock.mp3"
 export const Pomodoro = () => {
   const [time, setTime] = useState(25 * 60);
   const [isActive, setIsActive] = useState(false);
@@ -15,6 +16,7 @@ export const Pomodoro = () => {
   const [startTime, setStartTime] = useState(null);
   const [finishTime, setFinishTime] = useState(null);
   const { currentUser } = useContext(AuthContext);
+  const tickingAudio = new Audio(tickingClock); 
 
   useEffect(() => {
     let interval = null;
@@ -23,6 +25,7 @@ export const Pomodoro = () => {
       interval = setInterval(() => {
         setTime(time - 1);
         setProgress(((25 * 60 - (time - 1)) / (25 * 60)) * 100);
+        tickingAudio.play();
       }, 1000);
     } else if (isActive && time === 0) {
       setIsActive(false);
@@ -31,7 +34,10 @@ export const Pomodoro = () => {
       setFinishTime(new Date());
     }
 
-    return () => clearInterval(interval);
+    return () =>{
+      clearInterval(interval);
+      tickingAudio.pause();
+    } 
   }, [isActive, time]);
 
   useEffect(() => {
@@ -42,6 +48,7 @@ export const Pomodoro = () => {
   const handleStart = () => {
     setIsActive(true);
     setStartTime(new Date());
+    tickingAudio.play();
   };
 
   const handlePause = () => {
@@ -59,19 +66,34 @@ export const Pomodoro = () => {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
-  const saveData = async () => {
-    if ((isActive && time > 0) || (isActive && time === 0)) {
-      await setDoc(doc(db, "sessions", currentUser.uid), {
-        date: new Date(),
-        startTime: startTime,
-        finishTime: finishTime,
-      });
-    }
-  };
 
-  useEffect(() => {
-    saveData();
-  }, [saveData]);
+  // useEffect(() => {
+  //   const tickingAudio = new Audio(tickingClock);
+  //   if (isActive) {
+  //     tickingAudio.play();
+  //     tickingAudio.currentTime = 1;
+  //   } else {
+  //     tickingAudio.pause();
+  //     tickingAudio.currentTime = 0;
+  //   }
+  //   return () => {
+  //     tickingAudio.pause();
+  //     tickingAudio.currentTime = 0;
+  //   };
+  // }, [isActive]);
+  // const saveData = async () => {
+  //   if ((isActive && time > 0) || (isActive && time === 0)) {
+  //     await setDoc(doc(db, "sessions", currentUser.uid), {
+  //       date: new Date(),
+  //       startTime: startTime,
+  //       finishTime: finishTime,
+  //     });
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   saveData();
+  // }, [saveData]);
 
   return (
     <>

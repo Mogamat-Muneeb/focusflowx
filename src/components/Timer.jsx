@@ -27,7 +27,7 @@ export const Timer = () => {
       <Link to="/" className="font-extrabold text-white">focusflowx</Link>
 
     </div> */}
-    <Link to="/" className="pb-32 font-extrabold text-white text-[32px]">focusflowx</Link>
+    <Link to="/" className="mb-32 font-extrabold text-white text-[32px]">focusflowx</Link>
       <div className="flex gap-10">
         <button onClick={() => setShowing("Pomodoro")} className={`font-bold text-white ${ showing === "Pomodoro" && "px-2 py-1 bg-opacity-30   font-semibold rounded bg-white"}`}>Pomodoro</button>
         <button onClick={() => setShowing("ShortBreak")} className={`font-bold text-white ${ showing === "ShortBreak" && "px-2 py-1 bg-opacity-30  font-semibold rounded bg-white"}`}>Short Break</button>
