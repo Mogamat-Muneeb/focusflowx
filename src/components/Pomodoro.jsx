@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { ResetIcon } from "./Icons";
 import { Modals } from "./Modals";
 import { ProgressBar } from "./ProgressBar";
-import { addDoc, doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
-import { auth, db } from "../firebase";
 import { useContext } from "react";
-import tickingClock from "../assets/tickingClock.mp3"
+import tickingClock from "../assets/tickingClock.mp3";
 export const Pomodoro = () => {
   const [time, setTime] = useState(25 * 60);
   const [isActive, setIsActive] = useState(false);
@@ -16,7 +13,7 @@ export const Pomodoro = () => {
   const [startTime, setStartTime] = useState(null);
   const [finishTime, setFinishTime] = useState(null);
   const { currentUser } = useContext(AuthContext);
-  const tickingAudio = new Audio(tickingClock); 
+  const tickingAudio = new Audio(tickingClock);
 
   useEffect(() => {
     let interval = null;
@@ -34,10 +31,10 @@ export const Pomodoro = () => {
       setFinishTime(new Date());
     }
 
-    return () =>{
+    return () => {
       clearInterval(interval);
       tickingAudio.pause();
-    } 
+    };
   }, [isActive, time]);
 
   useEffect(() => {
@@ -65,7 +62,6 @@ export const Pomodoro = () => {
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-
 
   // useEffect(() => {
   //   const tickingAudio = new Audio(tickingClock);
